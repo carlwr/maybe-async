@@ -1,0 +1,13 @@
+{
+  "name": "@carlwr/maybe-async",
+  "version": "0.1.0",
+  "license": "MIT",
+  "exports": "./src/maybe-async.ts",
+  "publish": {
+    "include": [
+      "LICENSE",
+      "README.md",
+      "src/**/*.ts"
+    ]
+  }
+}

@@ -1,0 +1,85 @@
+{
+  "name": "@carlwr/maybe-async",
+  "description": "Helpers for values/functions that may or may not be asynchronous",
+  "keywords": [
+    "typescript",
+    "async",
+    "promise",
+    "thenable"
+  ],
+  "author": {
+    "name": "carlwr",
+    "url": "https://github.com/carlwr"
+  },
+  "publisher": "carlwr",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/carlwr/maybe-async.git"
+  },
+  "bugs": {
+    "url": "https://github.com/carlwr/maybe-async/issues"
+  },
+  "homepage": "https://github.com/carlwr/maybe-async#README.md",
+  "publishConfig": {
+    "access": "public"
+  },
+  "version": "0.1.0",
+  "license": "MIT",
+  "type": "module",
+  "sideEffects": false,
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": {
+        "types": "./dist/index.d.ts",
+        "default": "./dist/index.js"
+      },
+      "require": {
+        "types": "./dist/index.d.cts",
+        "default": "./dist/index.cjs"
+      }
+    }
+  },
+  "files": [
+    "dist",
+    "LICENSE",
+    "README.md"
+  ],
+  "scripts": {
+    "build": "tsx build.ts",
+    "jsr:sync": "tsx scripts/makeJsrJson.ts",
+    "typecheck": "tsc --noEmit",
+    "lint": "biome check",
+    "lint:jsr": "deno lint src test build.ts scripts",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "qa": "pnpm typecheck && pnpm lint && pnpm test",
+    "qa:jsr": "pnpm run lint:jsr && pnpm run publish:jsr:dry",
+    "qa:bun": "bun -e \"await import('./src/maybe-async.ts')\"",
+    "qa:all": "pnpm run publish:dry && pnpm run qa:jsr && pnpm run qa:bun",
+    "publish:dry": "pnpm pack --dry-run",
+    "publish:release": "npm publish",
+    "publish:jsr:dry": "pnpm run jsr:sync && deno publish --dry-run --allow-dirty",
+    "publish:jsr": "pnpm run jsr:sync && deno publish",
+    "prepack": "pnpm run qa && pnpm run build",
+    "version": "pnpm run jsr:sync && git add package.json jsr.json",
+    "LAST_dummy": "false"
+  },
+  "packageManager": "pnpm@12.6.0",
+  "devDependencies": {
+    "@biomejs/biome": "^2.6.6",
+    "@carlwr/typescript-extra": "^0.13.0",
+    "@types/node": "^26.6.0",
+    "arg": "^5.0.2",
+    "tsup": "^8.5.1",
+    "tsx": "^4.23.13",
+    "typescript": "^6.0.3",
+    "vitest": "^5.0.1",
+    "zzz_LAST_dummy": "npm:empty-npm-package@1.0.0"
+  },
+  "engines": {
+    "node": ">=20.0.0"
+  }
+}

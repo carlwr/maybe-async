@@ -1,0 +1,11 @@
+allowBuilds:
+  esbuild: true
+onlyBuiltDependencies:
+  - esbuild
+
+# `pnpm up --latest` will skip these:
+updateConfig:
+  ignoreDependencies:
+    # TS 7 is the native (Go) compiler and ships no JS compiler API;
+    # tsup's .d.ts bundling (rollup-plugin-dts) and typedoc both need it
+    - typescript

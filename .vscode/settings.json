@@ -1,0 +1,14 @@
+{
+  "[typescript]": {
+    "editor.codeActionsOnSave": {
+      "source.organizeImports": "explicit",
+      "source.removeUnusedImports": "never",
+      "source.organizeImports.biome": "explicit",
+    },
+    "editor.defaultFormatter": "biomejs.biome",
+    "editor.formatOnSave": true,
+  },
+  "prettier.semi": false,
+  "typescript.format.semicolons": "remove",
+  "typescript.preferences.quoteStyle": "single",
+}
